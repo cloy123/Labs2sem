@@ -35,7 +35,6 @@ namespace ScannerBL
             {
                 MaxResolution = maxResolution;
             }
-            
         }
 
         public Scanner() 
