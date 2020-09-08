@@ -13,6 +13,8 @@ namespace ScannerBL
     public class Scanner
     {
 
+        public int[] ArrForSort;
+
         #region lab1 и lab2
         public string Firm;
 

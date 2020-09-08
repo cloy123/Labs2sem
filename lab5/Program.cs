@@ -84,22 +84,22 @@ namespace lab5
             }
         }
 
-        static string ParseSring(string name)
+        static string ParseSring(string message)
         {
             string str = string.Empty;
             while (str.Trim() == "")
             {
-                Console.WriteLine(name);
+                Console.WriteLine(message);
                 str = Console.ReadLine();
             }
             return str;
         }
 
-        static int PareseInt(string name)
+        static int PareseInt(string message)
         {
             while (true)
             {
-                Console.WriteLine(name);
+                Console.WriteLine(message);
                 if (int.TryParse(Console.ReadLine(), out int i))
                 {
                     return i;
