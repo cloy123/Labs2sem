@@ -18,7 +18,7 @@ namespace lab6
             for(int i = 0; i < arrCount; i++)
             {
                 
-                scanner.ArrForSort[i] = random.Next(1, 15);
+                scanner.ArrForSort[i] = random.Next(1, 150);
                 //scanner.ArrForSort[i] = PareseInt($"Введите {i + 1} элемент массива:");
             }
             #endregion
@@ -31,16 +31,28 @@ namespace lab6
             ////}
 
 
+            
             Stopwatch timer = new Stopwatch();
+            int[] array;
+            #region сортировка пузырьком
+            timer.Start();
+            array = Sort((int[])scanner.ArrForSort.Clone());
+            timer.Stop();
+            Console.WriteLine($"Сортировка пызырьком:    {timer.ElapsedMilliseconds}");
+            //PrintArrayToCMD(array);
+            #endregion
 
-            //#region сортировка пузырьком
 
-            //timer.Start();
-            //BubbleSort((int[])scanner.ArrForSort.Clone());
-            //timer.Stop();
-            //Console.WriteLine((timer.ElapsedMilliseconds).ToString());
+            timer.Reset();
 
-            //#endregion
+            #region сортировка пузырьком
+            timer.Start();
+            array = BubbleSort((int[])scanner.ArrForSort.Clone());
+            timer.Stop();
+            Console.WriteLine($"Обычная сортировка:    { timer.ElapsedMilliseconds}");
+            //PrintArrayToCMD(array);
+            #endregion
+
 
             timer.Reset();
 
@@ -51,6 +63,14 @@ namespace lab6
 
         }
 
+
+        static void PrintArrayToCMD(int[] arr)
+        {
+            foreach(int i in arr)
+            {
+                Console.WriteLine(i.ToString());
+            }
+        }
 
         static string ParseSring(string message)
         {
