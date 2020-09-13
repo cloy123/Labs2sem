@@ -75,23 +75,42 @@ namespace lab6
             }
         }
 
-
-        static int[] BubbleSort(int[] arr)
+        static void Swap(ref int a, ref int b)
         {
-            int temp;
+            int temp = a;
+            a = b;
+            b = temp;
+        }
+
+
+        static int[] Sort(int[] arr)
+        {
             for(int i = 0; i < arr.Length - 1; i++)
             {
                 for(int j = i + 1; j < arr.Length; j++)
                 {
                     if(arr[j] < arr[i])
                     {
-                        temp = arr[j];
-                        arr[j] = arr[i];
-                        arr[i] = temp;
+                        Swap(ref arr[i], ref arr[j]);
                     }
                 }
             }
             return arr;
+        }
+
+        static int[] BubbleSort(int[] arr)
+        {
+            for (int i = 1; i < arr.Length; i++)
+            {
+                for(int j = 0; j < arr.Length - i; j++)
+                {
+                    if (arr[j + 1] < arr[j]) 
+                    {
+                        Swap(ref arr[j], ref arr[j + 1]);
+                    }
+                }    
+            }
+                return arr;
         }
     }
 }
