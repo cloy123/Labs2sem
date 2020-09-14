@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using Microsoft.VisualBasic.CompilerServices;
 using ScannerBL;
 
 namespace lab6
@@ -23,12 +24,6 @@ namespace lab6
             }
             #endregion
 
-            //int[] array = (int[])scanner.ArrForSort.Clone();
-
-            ////foreach(int i in BubbleSort(array))
-            ////{
-            ////    Console.WriteLine(i);
-            ////}
 
 
             
@@ -36,7 +31,7 @@ namespace lab6
             int[] array;
             #region сортировка пузырьком
             timer.Start();
-            array = Sort((int[])scanner.ArrForSort.Clone());
+            array = BubbleSort((int[])scanner.ArrForSort.Clone());
             timer.Stop();
             Console.WriteLine($"Сортировка пызырьком:    {timer.ElapsedMilliseconds}");
             //PrintArrayToCMD(array);
@@ -45,9 +40,9 @@ namespace lab6
 
             timer.Reset();
 
-            #region сортировка пузырьком
+            #region обычная сортировка
             timer.Start();
-            array = BubbleSort((int[])scanner.ArrForSort.Clone());
+            array = Sort((int[])scanner.ArrForSort.Clone());
             timer.Stop();
             Console.WriteLine($"Обычная сортировка:    { timer.ElapsedMilliseconds}");
             //PrintArrayToCMD(array);
@@ -56,9 +51,42 @@ namespace lab6
 
             timer.Reset();
 
+            #region сортировка прямыми включениями
+            timer.Start();
+            array = InclusionSort((int[])scanner.ArrForSort.Clone());
+            timer.Stop();
+            Console.WriteLine($"Cортировка прямыми включениями:    { timer.ElapsedMilliseconds}");
+            //PrintArrayToCMD(array);
+            #endregion
 
 
-            // (int[])scanner.ArrForSort.Clone();
+            timer.Reset();
+
+
+            #region шейкерная сортировка
+            timer.Start();
+            array = ShakerSort((int[])scanner.ArrForSort.Clone());
+            timer.Stop();
+            Console.WriteLine($"Шейкерная сортировка:    { timer.ElapsedMilliseconds}");
+            //PrintArrayToCMD(array);
+            #endregion
+
+
+            timer.Reset();
+
+
+            #region Сортировка методом Шелла
+            timer.Start();
+            array = ShellSort((int[])scanner.ArrForSort.Clone());
+            timer.Stop();
+            Console.WriteLine($"Сортировка методом Шелла:    { timer.ElapsedMilliseconds}");
+            //PrintArrayToCMD(array);
+            #endregion
+
+
+            timer.Reset();
+
+
 
 
         }
@@ -102,7 +130,11 @@ namespace lab6
             b = temp;
         }
 
-
+        /// <summary>
+        /// Сортировка массива методом прямого выбора
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
         static int[] Sort(int[] arr)
         {
             for(int i = 0; i < arr.Length - 1; i++)
@@ -118,6 +150,11 @@ namespace lab6
             return arr;
         }
 
+        /// <summary>
+        /// Сортировка массива методом прямого обмена (пузырьковым методом)
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
         static int[] BubbleSort(int[] arr)
         {
             for (int i = 1; i < arr.Length; i++)
@@ -132,5 +169,89 @@ namespace lab6
             }
                 return arr;
         }
+
+        /// <summary>
+        /// Сортировка прямыми включениями
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        static int[] InclusionSort(int[] arr)
+        {
+            for(int i = 1; i < arr.Length; i++)
+            {
+                int value = arr[i];
+                int index = i;
+                while((index > 0 ) && (arr[index - 1] > value))
+                {
+                    arr[index] = arr[index - 1];
+                    index--;
+                }
+                arr[index] = value;
+            }
+            return arr;
+        }
+
+        /// <summary>
+        /// Шейкерная сортировка
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        static int[] ShakerSort(int[] arr)
+        {
+            for(int i = 0; i < arr.Length / 2; i++)
+            {
+                bool swapFlag = false;
+                for(int j = i; j < arr.Length - i -1; j++)
+                {
+                    if(arr[j] > arr[j+1])
+                    {
+                        Swap(ref arr[j], ref arr[j + 1]);
+                        swapFlag = true;
+                    }
+                }
+
+                for(int j = arr.Length - 2 - i; j > i; j--)
+                {
+                    if(arr[j - 1] > arr[j])
+                    {
+                        Swap(ref arr[j - 1], ref arr[j]);
+                        swapFlag = true;
+                    }
+                }
+                if(!swapFlag)
+                {
+                    break;
+                }
+            }
+            return arr;
+        }
+
+        /// <summary>
+        /// Сортировка методом Шелла
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        static int[] ShellSort(int[] arr)
+        {
+            int interval = arr.Length / 2;
+            while(interval >= 1)
+            {
+                for(int i = interval; i < arr.Length; i++)
+                {
+                    int j = i;
+                    while((j >= interval) && (arr[j - interval] > arr[j]))
+                    {
+                        Swap(ref arr[j], ref arr[j - interval]);
+                        j = j - interval;
+                    }
+                }
+                interval /= 2;
+            }
+            return arr;
+        }
+
+
+
+
     }
 }
