@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.IO.Enumeration;
 using System.Runtime.Serialization.Formatters.Binary;
-using ScannerBL;
 
 namespace lab5
 {

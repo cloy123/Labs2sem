@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Buffers;
-using ScannerBL;
 
 namespace lab4
 {

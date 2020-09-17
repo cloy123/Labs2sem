@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ScannerBL;
 
 namespace Lab3
 {
     public class FlatbedScanner: Scanner
     {
-        public new const string ScannerType = "Планшетный";
+        public new string ScannerType { get; } = "Планшетный";
 
         public string ConnectionInterface;
 
 
         public override string GetInformation()
         {
-            return base.GetInformation() + $", Connection interface: {ConnectionInterface}";
+            return $"Firm: {Firm} \nScanner Type: {ScannerType} \nMax Resolution: {MaxResolution} \nConnection interface: {ConnectionInterface}";
         }
 
         public FlatbedScanner() : base() { }
