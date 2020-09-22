@@ -17,9 +17,7 @@ namespace Lab3
             Height = height;
         }
 
-        public Resolution()
-        {
-        }
+        public Resolution(){}
 
         public override string ToString()
         {

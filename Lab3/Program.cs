@@ -22,9 +22,7 @@ namespace Lab3
             Console.WriteLine(scanner.GetInformation());
             Console.WriteLine();
             Console.WriteLine(flatbedScanner.GetInformation());
-
             Console.ReadKey();
-
         }
         static string ParseSring(string name)
         {
@@ -48,6 +46,5 @@ namespace Lab3
                 }
             }
         }
-
     }
 }

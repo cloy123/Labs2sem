@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace lab4
 {
-    [Serializable]
     public class Resolution
     {
         public int Width;

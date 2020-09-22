@@ -6,35 +6,26 @@ namespace lab4
     {
         static void Main(string[] args)
         {
-            string firm = ParseSring("Введите фирму:");
-            string scannerType = ParseSring("Тип сканера:");
-
-            int resWidth = PareseInt("Введите разрешение(ширина):");
-            int resHeight = PareseInt("Введите разрешение(высота):");
-            Resolution maxResolution = new Resolution(resWidth, resHeight);
-
-            int countFormats = PareseInt("Введите количество форматов:");
-
-            string[] formats = new string[countFormats];
-
-            for(int i = 0; i < countFormats; i++)
+            int count = PareseInt("Введите количество объектов:");
+            Scanners scanners = new Scanners(count);
+            for (int i = 0; i < count; i++)
             {
-                formats[i] = ParseSring($"Введите формат {i + 1}:");
+                string firm = ParseSring("Введите фирму:");
+                string scannerType = ParseSring("Тип сканера:");
+                int resWidth = PareseInt("Введите разрешение(ширина):");
+                int resHeight = PareseInt("Введите разрешение(высота):");
+                Resolution maxResolution = new Resolution(resWidth, resHeight);
+                Scanner scanner = new Scanner(firm, scannerType, maxResolution);
+                scanners[i] = scanner;
             }
 
-            Scanner scanner = new Scanner(firm, scannerType, maxResolution, formats);
-
-            Console.WriteLine(scanner.GetInformation());
-
-            Console.WriteLine("Форматы:");
-            foreach(string s in scanner.Formats)
+            foreach(Scanner s in scanners)
             {
-                Console.WriteLine(s);
+                Console.WriteLine();
+                Console.WriteLine(s.GetInformation());
             }
-
             Console.ReadKey();
         }
-
         static string ParseSring(string name)
         {
             string str = string.Empty;
@@ -45,7 +36,6 @@ namespace lab4
             }
             return str;
         }
-
         static int PareseInt(string name)
         {
             while (true)

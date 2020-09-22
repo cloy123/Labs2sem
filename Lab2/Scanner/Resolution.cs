@@ -16,15 +16,9 @@ namespace Lab2
             Width = width;
             Height = height;
         }
-
-        public Resolution()
-        {
-        }
+        public Resolution(){}
 
         public override string ToString()
-        {
-                return $"{Width} * {Height}";
-        }
-
+        {return $"{Width} * {Height}";}
     }
 }

@@ -11,18 +11,9 @@ namespace Lab3
 {
     public class Scanner
     {
-
-        public int[] ArrForSort;
-
-        #region lab1 и lab2
         public string Firm;
-
         public string ScannerType;
-
         public Resolution MaxResolution;
-
-
-
         public Scanner(string firm, string scannerType, Resolution maxResolution)
         {
             ScannerType = scannerType;
@@ -42,13 +33,9 @@ namespace Lab3
         {
             MaxResolution = new Resolution();
         }
-        #endregion
-
-        #region lab3
         public virtual string GetInformation()
         {
             return $"Firm: {Firm} \nScanner Type: {ScannerType} \nMax Resolution: {MaxResolution}";
         }
-        #endregion
     }
 }

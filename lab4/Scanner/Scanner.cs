@@ -1,21 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 namespace lab4
 {
-    [Serializable]
     public class Scanner
     {
-
-        public int[] ArrForSort;
-
-        #region lab1 и lab2
         public string Firm;
 
         public string ScannerType;
@@ -43,27 +31,10 @@ namespace lab4
         {
             MaxResolution = new Resolution();
         }
-        #endregion
 
-        #region lab3
         public virtual string GetInformation()
         {
-            return $"Firm: {Firm} \nScanner Type: {ScannerType} \nMax Resolution: {MaxResolution.ToString()}";
+            return $"Firm: {Firm} \nScanner Type: {ScannerType} \nMax Resolution: {MaxResolution}";
         }
-        #endregion
-
-        #region lab4
-
-        public string[] Formats;
-
-        public Scanner(string firm, string scannerType, Resolution maxResolution, string[] formats):this(firm, scannerType, maxResolution)
-        {
-            Formats = formats;
-        }
-
-        #endregion
-
-
-
     }
 }

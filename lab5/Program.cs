@@ -9,69 +9,62 @@ namespace lab5
         static void Main(string[] args)
         {
             #region ввод
-            string firm = ParseSring("Введите фирму:");
-            string scannerType = ParseSring("Тип сканера:");
-            int resWidth = PareseInt("Введите разрешение(ширина):");
-            int resHeight = PareseInt("Введите разрешение(высота):");
-
-            Resolution maxResolution = new Resolution(resWidth, resHeight);
-
-            int countFormats = PareseInt("Введите количество форматов:");
-
-            string[] formats = new string[countFormats];
-
-            for (int i = 0; i < countFormats; i++)
+            int count = PareseInt("Введите количество объектов");
+            Scanners scanners = new Scanners(count);
+            for (int i = 0; i < count; i++)
             {
-                formats[i] = ParseSring($"Введите формат {i + 1}:");
+                Console.WriteLine();
+                string firm = ParseSring("Введите фирму:");
+                string scannerType = ParseSring("Тип сканера:");
+                int resWidth = PareseInt("Введите разрешение(ширина):");
+                int resHeight = PareseInt("Введите разрешение(высота):");
+                Resolution maxResolution = new Resolution(resWidth, resHeight);
+                Scanner scanner = new Scanner(firm, scannerType, maxResolution);
+                scanners[i] = scanner;
             }
             #endregion
 
             string fileName = "scaner.bin";
-            Scanner scanner = new Scanner(firm, scannerType, maxResolution, formats);
 
             #region сериализация
-            Save(scanner, fileName);
+            Save(scanners, fileName);
+            Console.WriteLine("\nОбьекты сериализованы\n");
             #endregion
 
             #region десериализация
-            Scanner newScanner = Load(fileName);
-            if(newScanner == null)
+            Scanners newScanners = Load(fileName);
+            if(newScanners == null)
             {
                 throw new Exception("newScanner равен null");
             }
+            Console.WriteLine("Обьекты десериализованы\n");
             #endregion
-
 
             #region вывод
-            Console.WriteLine(newScanner.GetInformation());
-            Console.WriteLine("Форматы:");
-            foreach (string s in newScanner.Formats)
+            foreach(Scanner s in scanners)
             {
-                Console.WriteLine(s);
+                Console.WriteLine(s.GetInformation() + "\n");
             }
             #endregion
-
             Console.ReadKey();
         }
 
-        
-
-        static void Save(Scanner scanner, string fileName)
+        static void Save(Scanners scanners, string fileName)
         {
             var formatter = new BinaryFormatter();
             using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
             {
-                formatter.Serialize(fs, scanner);
+                formatter.Serialize(fs, scanners);
             }
         }
 
-        static Scanner Load(string fileName)
+        static Scanners Load(string fileName)
         {
             var formatter = new BinaryFormatter();
 
             using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
             {
-                if (fs.Length > 0 && formatter.Deserialize(fs) is Scanner item)
+                if (fs.Length > 0 && formatter.Deserialize(fs) is Scanners item)
                 {
                     return item;
                 }
@@ -104,8 +97,5 @@ namespace lab5
                 }
             }
         }
-
-
-
     }
 }
