@@ -10,161 +10,154 @@ namespace lab6
         static void Main(string[] args)
         {
             #region ввод
-            int count = PareseInt("Введите количество объектов:");
+            int count = PareseInt("Введите количество объектов: ");
+            Console.WriteLine();
             Scanners scanners = new Scanners(count);
             for (int i = 0; i < count; i++)
             {
                 scanners[i] = new Scanner();
             }
             scanners.RandomNumbers();
+            bool IsPrintArray = false;
+            Console.Write("Выводить массивы(y/n)?  ");
+            if(Console.ReadKey().Key == ConsoleKey.Y)
+            { IsPrintArray = true; }
+            Console.WriteLine("\n");
+            
             #endregion
 
             Stopwatch timer = new Stopwatch();
+            Scanners scannersClone = (Scanners)scanners.Clone();
+
             #region сортировка пузырьком
+            Console.WriteLine("Сортировка пызырьком: ");
+            if (IsPrintArray)
+            {
+                Console.Write("Массив до: ");
+                PrintNumbersToCMD(scannersClone);
+            }
+
             timer.Start();
-            scanners.BubbleSort();
+            scannersClone.BubbleSort();
             timer.Stop();
-            Console.WriteLine($"Сортировка пызырьком:    {timer.ElapsedMilliseconds}");
+
+            if (IsPrintArray)
+            {
+                Console.Write("Массив после: ");
+                PrintNumbersToCMD(scannersClone);
+            }
+            Console.WriteLine($"Время:    {timer.ElapsedMilliseconds}\n");
             #endregion
 
             timer.Reset();
-            scanners.RandomNumbers();
+            scannersClone = (Scanners)scanners.Clone();
 
             #region обычная сортировка
+            Console.WriteLine("Обычная сортировка: ");
+
+            if (IsPrintArray)
+            {
+                Console.Write("Массив до: ");
+                PrintNumbersToCMD(scannersClone);
+            }
+
             timer.Start();
-            scanners.Sort();
+            scannersClone.Sort();
             timer.Stop();
-            Console.WriteLine($"Обычная сортировка:    { timer.ElapsedMilliseconds}");
+
+            if (IsPrintArray)
+            {
+                Console.Write("Массив после: ");
+                PrintNumbersToCMD(scannersClone);
+            }
+            Console.WriteLine($"Время:    {timer.ElapsedMilliseconds}\n");
             #endregion
 
             timer.Reset();
-            scanners.RandomNumbers();
+            scannersClone = (Scanners)scanners.Clone();
 
             #region сортировка прямыми включениями
+            Console.WriteLine("Сортировка прямыми включениями: ");
+            if (IsPrintArray)
+            {
+                Console.Write("Массив до: ");
+                PrintNumbersToCMD(scannersClone);
+            }
+
             timer.Start();
-            scanners.InclusionSort();
+            scannersClone.InclusionSort();
             timer.Stop();
-            Console.WriteLine($"Cортировка прямыми включениями:    { timer.ElapsedMilliseconds}");
+
+            if (IsPrintArray)
+            {
+                Console.Write("Массив после: ");
+                PrintNumbersToCMD(scannersClone);
+            }
+            Console.WriteLine($"Время:    {timer.ElapsedMilliseconds}\n");
             #endregion
 
             timer.Reset();
-            scanners.RandomNumbers();
+            scannersClone = (Scanners)scanners.Clone();
 
             #region шейкерная сортировка
+            Console.WriteLine("Шейкерная сортировка: ");
+            if (IsPrintArray)
+            {
+                Console.Write("Массив до: ");
+                PrintNumbersToCMD(scannersClone);
+            }
+
             timer.Start();
-            scanners.ShakerSort();
+            scannersClone.ShakerSort();
             timer.Stop();
-            Console.WriteLine($"Шейкерная сортировка:    { timer.ElapsedMilliseconds}");
+
+            if (IsPrintArray)
+            {
+                Console.Write("Массив после: ");
+                PrintNumbersToCMD(scannersClone);
+            }
+            Console.WriteLine($"Время:    {timer.ElapsedMilliseconds}\n");
             #endregion
 
             timer.Reset();
-            scanners.RandomNumbers();
+            scannersClone = (Scanners)scanners.Clone();
 
             #region Сортировка методом Шелла
-            timer.Start();
-            scanners.ShellSort();
-            timer.Stop();
-            Console.WriteLine($"Сортировка методом Шелла:    { timer.ElapsedMilliseconds}");
-            #endregion
+            Console.WriteLine("Сортировка методом Шелла: ");
+            if (IsPrintArray)
+            {
+                Console.Write("Массив до: ");
+                PrintNumbersToCMD(scannersClone);
+            }
 
-            timer.Reset();
+            timer.Start();
+            scannersClone.ShellSort();
+            timer.Stop();
+
+            if (IsPrintArray)
+            {
+                Console.Write("Массив после: ");
+                PrintNumbersToCMD(scannersClone);
+            }
+            Console.WriteLine($"Время:    {timer.ElapsedMilliseconds}\n");
+            #endregion
         }
 
-
-        static void PrintArrayToCMD(int[] arr)
+        static void PrintNumbersToCMD(Scanners s)
         {
-            foreach(int i in arr)
+            Console.Write("[ ");
+            foreach(Scanner scanner in s)
             {
-                Console.WriteLine(i.ToString());
+                Console.Write(scanner.Number + ", ");
             }
-        }
-
-        public void temp()
-        {
-            #region ввод
-            Scanner scanner = new Scanner();
-
-            int arrCount = PareseInt("Введите количество элементов массива");
-            scanner.ArrForSort = new int[arrCount];
-
-            Random random = new Random();
-            for (int i = 0; i < arrCount; i++)
-            {
-
-                scanner.ArrForSort[i] = random.Next(1, 150);
-                //scanner.ArrForSort[i] = PareseInt($"Введите {i + 1} элемент массива:");
-            }
-            #endregion
-
-            Stopwatch timer = new Stopwatch();
-            int[] array;
-            #region сортировка пузырьком
-            timer.Start();
-            array = BubbleSort((int[])scanner.ArrForSort.Clone());
-            timer.Stop();
-            Console.WriteLine($"Сортировка пызырьком:    {timer.ElapsedMilliseconds}");
-            //PrintArrayToCMD(array);
-            #endregion
-
-            timer.Reset();
-
-            #region обычная сортировка
-            timer.Start();
-            array = Sort((int[])scanner.ArrForSort.Clone());
-            timer.Stop();
-            Console.WriteLine($"Обычная сортировка:    { timer.ElapsedMilliseconds}");
-            //PrintArrayToCMD(array);
-            #endregion
-
-            timer.Reset();
-
-            #region сортировка прямыми включениями
-            timer.Start();
-            array = InclusionSort((int[])scanner.ArrForSort.Clone());
-            timer.Stop();
-            Console.WriteLine($"Cортировка прямыми включениями:    { timer.ElapsedMilliseconds}");
-            //PrintArrayToCMD(array);
-            #endregion
-
-            timer.Reset();
-
-            #region шейкерная сортировка
-            timer.Start();
-            array = ShakerSort((int[])scanner.ArrForSort.Clone());
-            timer.Stop();
-            Console.WriteLine($"Шейкерная сортировка:    { timer.ElapsedMilliseconds}");
-            //PrintArrayToCMD(array);
-            #endregion
-
-            timer.Reset();
-
-            #region Сортировка методом Шелла
-            timer.Start();
-            array = ShellSort((int[])scanner.ArrForSort.Clone());
-            timer.Stop();
-            Console.WriteLine($"Сортировка методом Шелла:    { timer.ElapsedMilliseconds}");
-            //PrintArrayToCMD(array);
-            #endregion
-
-            timer.Reset();
-        }
-
-        static string ParseSring(string message)
-        {
-            string str = string.Empty;
-            while (str.Trim() == "")
-            {
-                Console.WriteLine(message);
-                str = Console.ReadLine();
-            }
-            return str;
+            Console.WriteLine("]");
         }
 
         static int PareseInt(string message)
         {
             while (true)
             {
-                Console.WriteLine(message);
+                Console.Write(message);
                 if (int.TryParse(Console.ReadLine(), out int i))
                 {
                     return i;

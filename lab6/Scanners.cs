@@ -4,7 +4,7 @@ using System.Collections;
 namespace lab6
 {
     [Serializable]
-    class Scanners: IEnumerable
+    class Scanners: IEnumerable, ICloneable
     {
         Scanner[] scanners;
         public Scanner this [int pos]
@@ -28,6 +28,16 @@ namespace lab6
         }
         public IEnumerator GetEnumerator()
         { return scanners.GetEnumerator(); }
+        public object Clone()
+        {
+            Scanners s = new Scanners(this.scanners.Length);
+            for(int i = 0; i < this.scanners.Length; i++)
+            {
+                s[i] = (Scanner)this[i].Clone();
+            }
+            return s;
+        }
+
 
 
         public void RandomNumbers()
@@ -78,14 +88,14 @@ namespace lab6
         {
             for (int i = 1; i < scanners.Length; i++)
             {
-                int value = scanners[i].Number;
+                Scanner value = scanners[i];
                 int index = i;
-                while ((index > 0) && (scanners[index - 1].Number > value))
+                while ((index > 0) && (scanners[index - 1].Number > value.Number))
                 {
                     scanners[index] = scanners[index - 1];
                     index--;
                 }
-                scanners[index].Number = value;
+                scanners[index] = value;
             }
         }
 
@@ -133,6 +143,5 @@ namespace lab6
                 interval /= 2;
             }
         }
-
     }
 }

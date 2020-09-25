@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 namespace lab6
 {
     [Serializable]
-    public class Scanner
+    public class Scanner: ICloneable
     {
         public string Firm;
 
@@ -20,7 +20,7 @@ namespace lab6
 
         public int[] ArrForSort;
 
-        public int Number = 0;// = new Random().Next(1, 100);
+        public int Number = 0;
 
 
 
@@ -45,14 +45,14 @@ namespace lab6
         }
         public virtual string GetInformation()
         {
-            return $"Firm: {Firm} \nScanner Type: {ScannerType} \nMax Resolution: {MaxResolution.ToString()}";
+            return $"Firm: {Firm} \nScanner Type: {ScannerType} \nMax Resolution: {MaxResolution}";
         }
 
-        public string[] Formats;
-
-        public Scanner(string firm, string scannerType, Resolution maxResolution, string[] formats):this(firm, scannerType, maxResolution)
+        public object Clone()
         {
-            Formats = formats;
+            Scanner s = new Scanner(this.Firm, this.ScannerType, (Resolution)this.MaxResolution.Clone());
+            s.Number = this.Number;
+            return s;
         }
     }
 }

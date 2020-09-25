@@ -3,7 +3,7 @@
 namespace lab6
 {
     [Serializable]
-    public class Resolution
+    public class Resolution: ICloneable
     {
         public int Width;
         public int Height;
@@ -23,5 +23,9 @@ namespace lab6
                 return $"{Width} * {Height}";
         }
 
+        public object Clone()
+        {
+            return new Resolution(this.Width, this.Height);
+        }
     }
 }
