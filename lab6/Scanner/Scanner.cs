@@ -12,12 +12,15 @@ namespace lab6
     [Serializable]
     public class Scanner
     {
-        #region lab1 и lab2
         public string Firm;
 
         public string ScannerType;
 
         public Resolution MaxResolution;
+
+        public int[] ArrForSort;
+
+        public int Number = 0;// = new Random().Next(1, 100);
 
 
 
@@ -40,16 +43,10 @@ namespace lab6
         {
             MaxResolution = new Resolution();
         }
-        #endregion
-
-        #region lab3
         public virtual string GetInformation()
         {
             return $"Firm: {Firm} \nScanner Type: {ScannerType} \nMax Resolution: {MaxResolution.ToString()}";
         }
-        #endregion
-
-        #region lab4
 
         public string[] Formats;
 
@@ -57,10 +54,5 @@ namespace lab6
         {
             Formats = formats;
         }
-
-        #endregion
-
-        public int[] ArrForSort;
-
     }
 }

@@ -10,23 +10,92 @@ namespace lab6
         static void Main(string[] args)
         {
             #region ввод
+            int count = PareseInt("Введите количество объектов:");
+            Scanners scanners = new Scanners(count);
+            for (int i = 0; i < count; i++)
+            {
+                scanners[i] = new Scanner();
+            }
+            scanners.RandomNumbers();
+            #endregion
+
+            Stopwatch timer = new Stopwatch();
+            #region сортировка пузырьком
+            timer.Start();
+            scanners.BubbleSort();
+            timer.Stop();
+            Console.WriteLine($"Сортировка пызырьком:    {timer.ElapsedMilliseconds}");
+            #endregion
+
+            timer.Reset();
+            scanners.RandomNumbers();
+
+            #region обычная сортировка
+            timer.Start();
+            scanners.Sort();
+            timer.Stop();
+            Console.WriteLine($"Обычная сортировка:    { timer.ElapsedMilliseconds}");
+            #endregion
+
+            timer.Reset();
+            scanners.RandomNumbers();
+
+            #region сортировка прямыми включениями
+            timer.Start();
+            scanners.InclusionSort();
+            timer.Stop();
+            Console.WriteLine($"Cортировка прямыми включениями:    { timer.ElapsedMilliseconds}");
+            #endregion
+
+            timer.Reset();
+            scanners.RandomNumbers();
+
+            #region шейкерная сортировка
+            timer.Start();
+            scanners.ShakerSort();
+            timer.Stop();
+            Console.WriteLine($"Шейкерная сортировка:    { timer.ElapsedMilliseconds}");
+            #endregion
+
+            timer.Reset();
+            scanners.RandomNumbers();
+
+            #region Сортировка методом Шелла
+            timer.Start();
+            scanners.ShellSort();
+            timer.Stop();
+            Console.WriteLine($"Сортировка методом Шелла:    { timer.ElapsedMilliseconds}");
+            #endregion
+
+            timer.Reset();
+        }
+
+
+        static void PrintArrayToCMD(int[] arr)
+        {
+            foreach(int i in arr)
+            {
+                Console.WriteLine(i.ToString());
+            }
+        }
+
+        public void temp()
+        {
+            #region ввод
             Scanner scanner = new Scanner();
 
             int arrCount = PareseInt("Введите количество элементов массива");
             scanner.ArrForSort = new int[arrCount];
 
             Random random = new Random();
-            for(int i = 0; i < arrCount; i++)
+            for (int i = 0; i < arrCount; i++)
             {
-                
+
                 scanner.ArrForSort[i] = random.Next(1, 150);
                 //scanner.ArrForSort[i] = PareseInt($"Введите {i + 1} элемент массива:");
             }
             #endregion
 
-
-
-            
             Stopwatch timer = new Stopwatch();
             int[] array;
             #region сортировка пузырьком
@@ -36,7 +105,6 @@ namespace lab6
             Console.WriteLine($"Сортировка пызырьком:    {timer.ElapsedMilliseconds}");
             //PrintArrayToCMD(array);
             #endregion
-
 
             timer.Reset();
 
@@ -48,7 +116,6 @@ namespace lab6
             //PrintArrayToCMD(array);
             #endregion
 
-
             timer.Reset();
 
             #region сортировка прямыми включениями
@@ -59,9 +126,7 @@ namespace lab6
             //PrintArrayToCMD(array);
             #endregion
 
-
             timer.Reset();
-
 
             #region шейкерная сортировка
             timer.Start();
@@ -71,9 +136,7 @@ namespace lab6
             //PrintArrayToCMD(array);
             #endregion
 
-
             timer.Reset();
-
 
             #region Сортировка методом Шелла
             timer.Start();
@@ -83,21 +146,7 @@ namespace lab6
             //PrintArrayToCMD(array);
             #endregion
 
-
             timer.Reset();
-
-
-
-
-        }
-
-
-        static void PrintArrayToCMD(int[] arr)
-        {
-            foreach(int i in arr)
-            {
-                Console.WriteLine(i.ToString());
-            }
         }
 
         static string ParseSring(string message)
