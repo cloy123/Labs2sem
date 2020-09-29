@@ -9,22 +9,22 @@ namespace lab5
         static void Main(string[] args)
         {
             #region ввод
-            int count = PareseInt("Введите количество объектов");
+            int count = PareseInt("Введите количество объектов: ");
             Scanners scanners = new Scanners(count);
             for (int i = 0; i < count; i++)
             {
                 Console.WriteLine();
-                string firm = ParseSring("Введите фирму:");
-                string scannerType = ParseSring("Тип сканера:");
-                int resWidth = PareseInt("Введите разрешение(ширина):");
-                int resHeight = PareseInt("Введите разрешение(высота):");
+                string firm = ParseSring("Введите фирму: ");
+                string scannerType = ParseSring("Тип сканера: ");
+                int resWidth = PareseInt("Введите разрешение(ширина): ");
+                int resHeight = PareseInt("Введите разрешение(высота): ");
                 Resolution maxResolution = new Resolution(resWidth, resHeight);
                 Scanner scanner = new Scanner(firm, scannerType, maxResolution);
                 scanners[i] = scanner;
             }
             #endregion
 
-            string fileName = "scaner.bin";
+            string fileName = "scaners.bin";
 
             #region сериализация
             Save(scanners, fileName);
@@ -80,7 +80,7 @@ namespace lab5
             string str = string.Empty;
             while (str.Trim() == "")
             {
-                Console.WriteLine(message);
+                Console.Write(message);
                 str = Console.ReadLine();
             }
             return str;
@@ -90,7 +90,7 @@ namespace lab5
         {
             while (true)
             {
-                Console.WriteLine(message);
+                Console.Write(message);
                 if (int.TryParse(Console.ReadLine(), out int i))
                 {
                     return i;

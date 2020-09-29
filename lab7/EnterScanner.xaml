@@ -33,11 +33,11 @@
         <TextBox x:Name="Type" Grid.Column="1" Grid.Row="2" Background="LightGray"  Height="20" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBox>
         <DockPanel  Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200">
             <Label Width="60">Высота:</Label>
-            <xctk:IntegerUpDown x:Name="Width" Background="LightGray" Minimum="1" Value="1" Height="20" Width="60" HorizontalAlignment="Left"></xctk:IntegerUpDown>
+            <xctk:IntegerUpDown x:Name="width" Background="LightGray" Minimum="1" Value="1" Height="20" Width="60" HorizontalAlignment="Left"></xctk:IntegerUpDown>
         </DockPanel>
         <DockPanel  Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200">
             <Label Width="60">Ширина:</Label>
-            <xctk:IntegerUpDown x:Name="Height" Background="LightGray" Minimum="1" Value="1" Height="20" Width="60" HorizontalAlignment="Left"></xctk:IntegerUpDown>
+            <xctk:IntegerUpDown x:Name="height" Background="LightGray" Minimum="1" Value="1" Height="20" Width="60" HorizontalAlignment="Left"></xctk:IntegerUpDown>
         </DockPanel>
 
         <Button x:Name="Ok" IsDefault="True" Grid.Row="5" Click="Ok_Click">Ok</Button>

@@ -1,22 +1,17 @@
 ﻿using System;
 
-namespace lab6
+namespace lab7
 {
-    [Serializable]
     public class Resolution: ICloneable
     {
         public int Width;
         public int Height;
-
         public Resolution(int width, int height)
         {
             Width = width;
             Height = height;
         }
-
-        public Resolution()
-        {
-        }
+        public Resolution(){}
 
         public override string ToString()
         {

@@ -1,26 +1,10 @@
-﻿using lab6;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace lab7
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -54,10 +38,6 @@ namespace lab7
         string OnlyNumbersInclusion = "";
         string OnlyNumbersShaker = "";
         string OnlyNumbersShell = "";
-
-
-
-
         private string ScannersToString(Scanners scanners)
         {
             string str = "";
@@ -94,7 +74,7 @@ namespace lab7
                {
                     scanners = new Scanners(enterSizeWindow.SizeArray);
                     scanners.RandomNumbers();
-                }
+               }
                else
                {
                     Scanners newScanners = new Scanners(enterSizeWindow.SizeArray);
@@ -187,7 +167,6 @@ namespace lab7
                 SetText();
             }
         }
-
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         { SetText(); }
 
@@ -236,7 +215,6 @@ namespace lab7
                     break;
             }
         }
-
         private void IsOnlyNumbers_Click(object sender, RoutedEventArgs e)
         { SetText(); }
     }

@@ -2,7 +2,6 @@
 
 namespace lab6
 {
-    [Serializable]
     public class Resolution: ICloneable
     {
         public int Width;

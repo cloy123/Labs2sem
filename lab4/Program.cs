@@ -6,23 +6,24 @@ namespace lab4
     {
         static void Main(string[] args)
         {
-            int count = PareseInt("Введите количество объектов:");
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            int count = PareseInt("Введите количество объектов: ");
             Scanners scanners = new Scanners(count);
             for (int i = 0; i < count; i++)
             {
-                string firm = ParseSring("Введите фирму:");
-                string scannerType = ParseSring("Тип сканера:");
-                int resWidth = PareseInt("Введите разрешение(ширина):");
-                int resHeight = PareseInt("Введите разрешение(высота):");
+                string firm = ParseSring("Введите фирму: ");
+                string scannerType = ParseSring("Тип сканера: ");
+                int resWidth = PareseInt("Введите разрешение(ширина): ");
+                int resHeight = PareseInt("Введите разрешение(высота): ");
+                Console.WriteLine();
                 Resolution maxResolution = new Resolution(resWidth, resHeight);
                 Scanner scanner = new Scanner(firm, scannerType, maxResolution);
                 scanners[i] = scanner;
             }
-
-            foreach(Scanner s in scanners)
+            foreach (Scanner s in scanners)
             {
-                Console.WriteLine();
-                Console.WriteLine(s.GetInformation());
+                Console.WriteLine(s.GetInformation()+"\n");
             }
             Console.ReadKey();
         }
@@ -31,7 +32,7 @@ namespace lab4
             string str = string.Empty;
             while (str.Trim() == "")
             {
-                Console.WriteLine(name);
+                Console.Write(name);
                 str = Console.ReadLine();
             }
             return str;
@@ -40,7 +41,7 @@ namespace lab4
         {
             while (true)
             {
-                Console.WriteLine(name);
+                Console.Write(name);
                 if (int.TryParse(Console.ReadLine(), out int i))
                 {
                     return i;

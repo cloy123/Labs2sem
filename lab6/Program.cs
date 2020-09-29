@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using Microsoft.VisualBasic.CompilerServices;
-using ScannerBL;
 
 namespace lab6
 {
@@ -23,9 +21,7 @@ namespace lab6
             if(Console.ReadKey().Key == ConsoleKey.Y)
             { IsPrintArray = true; }
             Console.WriteLine("\n");
-            
             #endregion
-
             Stopwatch timer = new Stopwatch();
             Scanners scannersClone = (Scanners)scanners.Clone();
 
@@ -36,43 +32,36 @@ namespace lab6
                 Console.Write("Массив до: ");
                 PrintNumbersToCMD(scannersClone);
             }
-
             timer.Start();
             scannersClone.BubbleSort();
             timer.Stop();
-
             if (IsPrintArray)
             {
                 Console.Write("Массив после: ");
                 PrintNumbersToCMD(scannersClone);
             }
-            Console.WriteLine($"Время:    {timer.ElapsedMilliseconds}\n");
+            Console.WriteLine($"Время:    {timer.ElapsedMilliseconds} ms\n");
             #endregion
-
             timer.Reset();
             scannersClone = (Scanners)scanners.Clone();
 
             #region Сортировка массива методом прямого выбора
             Console.WriteLine("Сортировка массива методом прямого выбора: ");
-
             if (IsPrintArray)
             {
                 Console.Write("Массив до: ");
                 PrintNumbersToCMD(scannersClone);
             }
-
             timer.Start();
             scannersClone.SelectionSort();
             timer.Stop();
-
             if (IsPrintArray)
             {
                 Console.Write("Массив после: ");
                 PrintNumbersToCMD(scannersClone);
             }
-            Console.WriteLine($"Время:    {timer.ElapsedMilliseconds}\n");
+            Console.WriteLine($"Время:    {timer.ElapsedMilliseconds} ms\n");
             #endregion
-
             timer.Reset();
             scannersClone = (Scanners)scanners.Clone();
 
@@ -83,19 +72,16 @@ namespace lab6
                 Console.Write("Массив до: ");
                 PrintNumbersToCMD(scannersClone);
             }
-
             timer.Start();
             scannersClone.InclusionSort();
             timer.Stop();
-
             if (IsPrintArray)
             {
                 Console.Write("Массив после: ");
                 PrintNumbersToCMD(scannersClone);
             }
-            Console.WriteLine($"Время:    {timer.ElapsedMilliseconds}\n");
+            Console.WriteLine($"Время:    {timer.ElapsedMilliseconds} ms\n");
             #endregion
-
             timer.Reset();
             scannersClone = (Scanners)scanners.Clone();
 
@@ -106,19 +92,16 @@ namespace lab6
                 Console.Write("Массив до: ");
                 PrintNumbersToCMD(scannersClone);
             }
-
             timer.Start();
             scannersClone.ShakerSort();
             timer.Stop();
-
             if (IsPrintArray)
             {
                 Console.Write("Массив после: ");
                 PrintNumbersToCMD(scannersClone);
             }
-            Console.WriteLine($"Время:    {timer.ElapsedMilliseconds}\n");
+            Console.WriteLine($"Время:    {timer.ElapsedMilliseconds} ms\n");
             #endregion
-
             timer.Reset();
             scannersClone = (Scanners)scanners.Clone();
 
@@ -129,18 +112,17 @@ namespace lab6
                 Console.Write("Массив до: ");
                 PrintNumbersToCMD(scannersClone);
             }
-
             timer.Start();
             scannersClone.ShellSort();
             timer.Stop();
-
             if (IsPrintArray)
             {
                 Console.Write("Массив после: ");
                 PrintNumbersToCMD(scannersClone);
             }
-            Console.WriteLine($"Время:    {timer.ElapsedMilliseconds}\n");
+            Console.WriteLine($"Время:    {timer.ElapsedMilliseconds} ms\n");
             #endregion
+            Console.ReadLine();
         }
 
         static void PrintNumbersToCMD(Scanners s)

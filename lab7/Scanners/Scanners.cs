@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections;
 
-namespace lab6
+namespace lab7
 {
-    [Serializable]
     class Scanners: IEnumerable, ICloneable
     {
         Scanner[] scanners;
@@ -43,9 +42,6 @@ namespace lab6
             }
             return s;
         }
-
-
-
         public void RandomNumbers()
         {
             Random rnd = new Random();
@@ -54,14 +50,12 @@ namespace lab6
                 s.Number = rnd.Next(1, 1000);
             }
         }
-
         private void Swap(ref Scanner a, ref Scanner b)
         {
             Scanner temp = a;
             a = b;
             b = temp;
         }
-
         public void SelectionSort()
         {
             for (int i = 0; i < scanners.Length - 1; i++)
@@ -75,7 +69,6 @@ namespace lab6
                 }
             }
         }
-
         public void BubbleSort()
         {
             for (int i = 1; i < scanners.Length; i++)
@@ -89,7 +82,6 @@ namespace lab6
                 }
             }
         }
-
         public void InclusionSort()
         {
             for (int i = 1; i < scanners.Length; i++)
@@ -104,7 +96,6 @@ namespace lab6
                 scanners[index] = value;
             }
         }
-
         public void ShakerSort()
         {
             for (int i = 0; i < scanners.Length / 2; i++)
@@ -118,7 +109,6 @@ namespace lab6
                         swapFlag = true;
                     }
                 }
-
                 for (int j = scanners.Length - 2 - i; j > i; j--)
                 {
                     if (scanners[j - 1].Number > scanners[j].Number)
@@ -131,7 +121,6 @@ namespace lab6
                 { break; }
             }
         }
-
         public void ShellSort()
         {
             int interval = scanners.Length / 2;
