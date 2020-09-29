@@ -1,0 +1,46 @@
+﻿<Window x:Class="lab7.EnterScanner"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:lab7"
+        mc:Ignorable="d"
+        Title="EnterScanner" Height="225" Width="260"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="130"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <Label HorizontalAlignment="Left" VerticalAlignment="Center">Фирма:</Label>
+        <Label Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">Номер:</Label>
+        <Label Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">Тип сканера:</Label>
+        <Label Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center">Макс. разрешение:</Label>
+
+        <TextBox x:Name="Firm" Grid.Column="1" Background="LightGray"  Height="20" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBox>
+        <xctk:IntegerUpDown x:Name="Number" Value="0" Grid.Column="1" Grid.Row="1" Background="LightGray"  Height="20" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"></xctk:IntegerUpDown>
+        <TextBox x:Name="Type" Grid.Column="1" Grid.Row="2" Background="LightGray"  Height="20" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBox>
+        <DockPanel  Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200">
+            <Label Width="60">Высота:</Label>
+            <xctk:IntegerUpDown x:Name="Width" Background="LightGray" Minimum="1" Value="1" Height="20" Width="60" HorizontalAlignment="Left"></xctk:IntegerUpDown>
+        </DockPanel>
+        <DockPanel  Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200">
+            <Label Width="60">Ширина:</Label>
+            <xctk:IntegerUpDown x:Name="Height" Background="LightGray" Minimum="1" Value="1" Height="20" Width="60" HorizontalAlignment="Left"></xctk:IntegerUpDown>
+        </DockPanel>
+
+        <Button x:Name="Ok" IsDefault="True" Grid.Row="5" Click="Ok_Click">Ok</Button>
+        <Button x:Name="Cancel" IsCancel="True" Grid.Row="5" Grid.Column="1" Click="Cancel_Click">Отмена</Button>
+    </Grid>
+</Window>

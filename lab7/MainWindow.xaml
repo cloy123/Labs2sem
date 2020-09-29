@@ -1,0 +1,39 @@
+﻿<Window x:Class="lab7.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab7"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+            <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="0">
+                <Menu>
+                    <MenuItem Header="Массив">
+                        <MenuItem Header="Ввести" Name="EnterArray" Click="EnterArray_Click"></MenuItem>
+                        <MenuItem Header="Отсортировать по номеру сканера" Name="SortArray" Click="SortArray_Click"></MenuItem>
+                        <MenuItem x:Name="IsOnlyNumbers" Header="Отображать только номера элементов" IsCheckable="True" IsChecked="False" Click="IsOnlyNumbers_Click"></MenuItem>                   
+                    </MenuItem>
+                </Menu>
+
+            <ComboBox x:Name="ComboBox" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBoxItem>Результаты</ComboBoxItem>
+                <ComboBoxItem>Исходный массив</ComboBoxItem>
+                <ComboBoxItem>Сортировка методом пузырька</ComboBoxItem>
+                <ComboBoxItem>Сортировка массива методом прямого выбора</ComboBoxItem>
+                <ComboBoxItem>Cортировка прямыми включениями</ComboBoxItem>
+                <ComboBoxItem>Шейкерная сортировка</ComboBoxItem>
+                <ComboBoxItem>Сортировка методом Шелла</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+
+        <TextBox x:Name="text" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"></TextBox>
+
+    </Grid>
+</Window>

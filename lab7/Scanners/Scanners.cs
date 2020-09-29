@@ -7,6 +7,7 @@ namespace lab6
     class Scanners: IEnumerable, ICloneable
     {
         Scanner[] scanners;
+        public int Lenght;
         public Scanner this [int pos]
         {
             get
@@ -25,6 +26,11 @@ namespace lab6
                 throw new Exception("Длина массива не может быть меньше нуля или равна нулю");
             }
             scanners = new Scanner[length];
+            for(int i = 0; i < length; i++)
+            {
+                scanners[i] = new Scanner();
+            }
+            Lenght = length;
         }
         public IEnumerator GetEnumerator()
         { return scanners.GetEnumerator(); }
