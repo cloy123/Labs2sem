@@ -4,12 +4,11 @@ namespace lab7
 {
     public class Scanner: ICloneable
     {
-        public string Firm;
-        public string ScannerType;
-        public Resolution MaxResolution;
-        public int[] ArrForSort;
-        public int Number = 0;
-        public Scanner(string firm, string scannerType, Resolution maxResolution)
+        public string Firm { get; set; }
+        public string ScannerType { get; set; }
+        public Resolution MaxResolution { get; set; }
+        public int Number { get; set; } = 0;
+    public Scanner(string firm, string scannerType, Resolution maxResolution)
         {
             ScannerType = scannerType;
             Firm = firm;

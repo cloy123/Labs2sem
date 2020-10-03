@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab7"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -12,15 +13,14 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        
-            <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="0">
-                <Menu>
-                    <MenuItem Header="Массив">
-                        <MenuItem Header="Ввести" Name="EnterArray" Click="EnterArray_Click"></MenuItem>
-                        <MenuItem Header="Отсортировать по номеру сканера" Name="SortArray" Click="SortArray_Click"></MenuItem>
-                        <MenuItem x:Name="IsOnlyNumbers" Header="Отображать только номера элементов" IsCheckable="True" IsChecked="False" Click="IsOnlyNumbers_Click"></MenuItem>                   
-                    </MenuItem>
-                </Menu>
+
+        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="0">
+            <Menu>
+                <MenuItem Header="Массив">
+                    <MenuItem Header="Ввести" Name="EnterArray" Click="EnterArray_Click"></MenuItem>
+                    <MenuItem Header="Отсортировать по номеру сканера" Name="SortArray" Click="SortArray_Click"></MenuItem>
+                </MenuItem>
+            </Menu>
 
             <ComboBox x:Name="ComboBox" SelectionChanged="ComboBox_SelectionChanged">
                 <ComboBoxItem>Результаты</ComboBoxItem>
@@ -32,8 +32,6 @@
                 <ComboBoxItem>Сортировка методом Шелла</ComboBoxItem>
             </ComboBox>
         </StackPanel>
-
-        <TextBox x:Name="text" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"></TextBox>
-
+        <DataGrid x:Name="dataGrid" Grid.Row="1" AutoGenerateColumns="True" CanUserSortColumns="False" LoadingRow="dataGrid_LoadingRow" IsReadOnly="True"></DataGrid>
     </Grid>
 </Window>

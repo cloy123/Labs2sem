@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,57 +13,12 @@ namespace lab7
             InitializeComponent();
         }
         Scanners scanners;
-        Scanners forBubble;
-        Scanners forSelection;
-        Scanners forInclusion;
-        Scanners forShaker;
-        Scanners forShell;
-
-        int timeBubbleSort = 0;
-        int timeSelectionSort = 0;
-        int timeInclusionSort = 0;
-        int timeShakerSort = 0;
-        int timeShellSort = 0;
-
-        string result = "";
-        string Scanners = "";
-        string Bubble = "";
-        string Selection = "";
-        string Inclusion = "";
-        string Shaker = "";
-        string Shell = "";
-
-        string OnlyNumbersScanners = "";
-        string OnlyNumbersBubble = "";
-        string OnlyNumbersSelection = "";
-        string OnlyNumbersInclusion = "";
-        string OnlyNumbersShaker = "";
-        string OnlyNumbersShell = "";
-        private string ScannersToString(Scanners scanners)
-        {
-            string str = "";
-
-            for(int i = 0; i < scanners.Lenght; i++)
-            {
-                str += $"Элемент {i+1}:\n" +
-                    $"Firm: {scanners[i].Firm}\n" +
-                    $"Number: {scanners[i].Number}\n" +
-                    $"Scanner type: {scanners[i].ScannerType}\n" +
-                    $"Max resolution: {scanners[i].MaxResolution}\n\n";
-            }
-            return str;
-        }
-
-        private string NumbersToString(Scanners scanners)
-        {
-            string str = "[";
-            foreach(Scanner s in scanners)
-            {
-                str += $"{s.Number}, ";
-            }
-            str += "]";
-            return str;
-        }
+        Scanners Bubble;
+        Scanners Selection;
+        Scanners Inclusion;
+        Scanners Shaker;
+        Scanners Shell;
+        List<Result> Results;
 
         private void EnterArray_Click(object sender, RoutedEventArgs e)
         {
@@ -94,128 +50,85 @@ namespace lab7
                     }
                     scanners = newScanners;
                 }
-                forBubble = (Scanners)scanners.Clone();
-                forSelection = (Scanners)scanners.Clone();
-                forInclusion = (Scanners)scanners.Clone();
-                forShaker = (Scanners)scanners.Clone();
-                forShell = (Scanners)scanners.Clone();
-                Scanners = ScannersToString(scanners);
-                ArraysToString();
+                Bubble = (Scanners)scanners.Clone();
+                Selection = (Scanners)scanners.Clone();
+                Inclusion = (Scanners)scanners.Clone();
+                Shaker = (Scanners)scanners.Clone();
+                Shell = (Scanners)scanners.Clone();
                 ComboBox.SelectedIndex = 1;
-                SetText();
+                dataGrid.ItemsSource = scanners;
             }
-        }
-
-        private void ArraysToString()
-        {
-            Scanners = ScannersToString(scanners);
-            Bubble = ScannersToString(forBubble);
-            Selection = ScannersToString(forSelection);
-            Inclusion = ScannersToString(forInclusion);
-            Shaker = ScannersToString(forShaker);
-            Shell = ScannersToString(forShell);
-
-            OnlyNumbersScanners = NumbersToString(scanners);
-            OnlyNumbersBubble = NumbersToString(forBubble);
-            OnlyNumbersSelection = NumbersToString(forSelection);
-            OnlyNumbersInclusion = NumbersToString(forInclusion);
-            OnlyNumbersShaker = NumbersToString(forShaker);
-            OnlyNumbersShell = NumbersToString(forShell);
         }
 
         private void SortArray_Click(object sender, RoutedEventArgs e)
         {
-            if(scanners != null)
+            Results = new List<Result>();
+            ComboBox.SelectedIndex = 0;
+            if (scanners != null)
             {
                 Stopwatch timer = new Stopwatch();
 
                 timer.Start();
-                forBubble.BubbleSort();
+                Bubble.BubbleSort();
                 timer.Stop();
-                timeBubbleSort = Convert.ToInt32(timer.ElapsedMilliseconds);
+                Results.Add(new Result("Пузырьком", Convert.ToInt32(timer.ElapsedMilliseconds).ToString()));
 
                 timer.Reset();
                 timer.Start();
-                forSelection.SelectionSort();
+                Selection.SelectionSort();
                 timer.Stop();
-                timeSelectionSort = Convert.ToInt32(timer.ElapsedMilliseconds);
+                Results.Add(new Result("Прямым выбором", Convert.ToInt32(timer.ElapsedMilliseconds).ToString()));
 
                 timer.Reset();
                 timer.Start();
-                forInclusion.InclusionSort();
+                Inclusion.InclusionSort();
                 timer.Stop();
-                timeInclusionSort = Convert.ToInt32(timer.ElapsedMilliseconds);
+                Results.Add(new Result("Прямыми включениями", Convert.ToInt32(timer.ElapsedMilliseconds).ToString()));
 
                 timer.Reset();
                 timer.Start();
-                forShaker.ShakerSort();
+                Shaker.ShakerSort();
                 timer.Stop();
-                timeShakerSort = Convert.ToInt32(timer.ElapsedMilliseconds); 
+                Results.Add(new Result("Шейкерная сортировка", Convert.ToInt32(timer.ElapsedMilliseconds).ToString()));
 
                 timer.Reset();
                 timer.Start();
-                forShell.ShellSort();
+                Shell.ShellSort();
                 timer.Stop();
-                timeShellSort = Convert.ToInt32(timer.ElapsedMilliseconds);
-
-                result = $"Cортировка пузырьком: {timeBubbleSort} ms\n" +
-                    $"Сортировка массива методом прямого выбора: {timeSelectionSort} ms\n" +
-                    $"Сортировка прямыми включениями: {timeInclusionSort} ms\n" +
-                    $"Шейкерная сортировка: {timeShakerSort} ms\n" +
-                    $"Сортировка методом Шелла: {timeShellSort} ms\n";
-                ArraysToString();
-                SetText();
+                Results.Add(new Result("Методом Шелла", Convert.ToInt32(timer.ElapsedMilliseconds).ToString()));
             }
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        { SetText(); }
-
-        private void SetText()
         {
             switch (ComboBox.SelectedIndex)
             {
                 case 0:
-                    text.Text = result;
+                    dataGrid.ItemsSource = Results;
                     break;
                 case 1:
-                    if (IsOnlyNumbers.IsChecked)
-                    { text.Text = OnlyNumbersScanners; }
-                    else
-                    { text.Text = Scanners; }
+                    dataGrid.ItemsSource = scanners;
                     break;
                 case 2:
-                    if (IsOnlyNumbers.IsChecked)
-                    { text.Text = OnlyNumbersBubble; }
-                    else
-                    { text.Text = Bubble; }
+                    dataGrid.ItemsSource = Bubble;
                     break;
                 case 3:
-                    if (IsOnlyNumbers.IsChecked)
-                    { text.Text = OnlyNumbersSelection; }
-                    else
-                    { text.Text = Selection; }
+                    dataGrid.ItemsSource = Selection;
                     break;
                 case 4:
-                    if (IsOnlyNumbers.IsChecked)
-                    { text.Text = OnlyNumbersInclusion; }
-                    else
-                    { text.Text = Inclusion; }
+                    dataGrid.ItemsSource = Inclusion;
                     break;
                 case 5:
-                    if (IsOnlyNumbers.IsChecked)
-                    { text.Text = OnlyNumbersShaker; }
-                    else
-                    { text.Text = Shaker; }
+                    dataGrid.ItemsSource = Shaker;
                     break;
                 case 6:
-                    if (IsOnlyNumbers.IsChecked)
-                    { text.Text = OnlyNumbersShell; }
-                    else
-                    { text.Text = Shell; }
+                    dataGrid.ItemsSource = Shell;
                     break;
             }
         }
-        private void IsOnlyNumbers_Click(object sender, RoutedEventArgs e)
-        { SetText(); }
+
+        private void dataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex()).ToString();
+        }
     }
 }

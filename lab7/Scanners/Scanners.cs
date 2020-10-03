@@ -5,7 +5,7 @@ namespace lab7
 {
     class Scanners: IEnumerable, ICloneable
     {
-        Scanner[] scanners;
+        public Scanner[] scanners;
         public int Lenght;
         public Scanner this [int pos]
         {
