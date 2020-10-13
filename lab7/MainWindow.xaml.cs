@@ -8,10 +8,6 @@ namespace lab7
 {
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
         Scanners scanners;
         Scanners Bubble;
         Scanners Selection;
@@ -20,6 +16,10 @@ namespace lab7
         Scanners Shell;
         List<Result> Results;
 
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
         private void EnterArray_Click(object sender, RoutedEventArgs e)
         {
             EnterSizeWindow enterSizeWindow = new EnterSizeWindow();
@@ -97,32 +97,36 @@ namespace lab7
                 timer.Stop();
                 Results.Add(new Result("Методом Шелла", Convert.ToInt32(timer.ElapsedMilliseconds).ToString()));
             }
+            ComboBox.SelectedIndex = 0;
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (ComboBox.SelectedIndex)
+            if (scanners != null)
             {
-                case 0:
-                    dataGrid.ItemsSource = Results;
-                    break;
-                case 1:
-                    dataGrid.ItemsSource = scanners;
-                    break;
-                case 2:
-                    dataGrid.ItemsSource = Bubble;
-                    break;
-                case 3:
-                    dataGrid.ItemsSource = Selection;
-                    break;
-                case 4:
-                    dataGrid.ItemsSource = Inclusion;
-                    break;
-                case 5:
-                    dataGrid.ItemsSource = Shaker;
-                    break;
-                case 6:
-                    dataGrid.ItemsSource = Shell;
-                    break;
+                switch (ComboBox.SelectedIndex)
+                {
+                    case 0:
+                        dataGrid.ItemsSource = Results;
+                        break;
+                    case 1:
+                        dataGrid.ItemsSource = (Scanners)scanners.Clone();
+                        break;
+                    case 2:
+                        dataGrid.ItemsSource = (Scanners)Bubble.Clone();
+                        break;
+                    case 3:
+                        dataGrid.ItemsSource = (Scanners)Selection.Clone();
+                        break;
+                    case 4:
+                        dataGrid.ItemsSource = (Scanners)Inclusion.Clone();
+                        break;
+                    case 5:
+                        dataGrid.ItemsSource = (Scanners)Shaker.Clone();
+                        break;
+                    case 6:
+                        dataGrid.ItemsSource = (Scanners)Shell.Clone();
+                        break;
+                }
             }
         }
 

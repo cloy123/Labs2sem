@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace lab7
 {
     public class Resolution: ICloneable
@@ -12,12 +11,10 @@ namespace lab7
             Height = height;
         }
         public Resolution(){}
-
         public override string ToString()
         {
                 return $"{Width} * {Height}";
         }
-
         public object Clone()
         {
             return new Resolution(this.Width, this.Height);

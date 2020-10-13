@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace lab7
 {
     public class Scanner: ICloneable
